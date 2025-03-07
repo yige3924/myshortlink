@@ -2,7 +2,7 @@ package com.xieyun.shortlink.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xieyun.shortlink.admin.common.convention.result.Result;
-import com.xieyun.shortlink.admin.remote.dto.ShortLinkRemoteService;
+import com.xieyun.shortlink.admin.remote.ShortLinkRemoteService;
 import com.xieyun.shortlink.admin.remote.dto.req.ShortLinkCreateReqDTO;
 import com.xieyun.shortlink.admin.remote.dto.req.ShortLinkPageReqDTO;
 import com.xieyun.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
