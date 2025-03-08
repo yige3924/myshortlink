@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xieyun.shortlink.project.dao.entity.ShortLinkDO;
 import com.xieyun.shortlink.project.dao.mapper.ShortLinkMapper;
 import com.xieyun.shortlink.project.dto.req.RecycleBinRecoverReqDTO;
+import com.xieyun.shortlink.project.dto.req.RecycleBinRemoveReqDTO;
 import com.xieyun.shortlink.project.dto.req.RecycleBinSaveReqDTO;
 import com.xieyun.shortlink.project.dto.req.ShortLinkRecycleBinPageReqDTO;
 import com.xieyun.shortlink.project.dto.resp.ShortLinkPageRespDTO;
@@ -76,5 +77,15 @@ public class RecycleBinServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLin
                 String.format(GOTO_IS_NULL_SHORT_LINK_KEY, requestParam.getFullShortUrl())
         );
 
+    }
+
+    @Override
+    public void recoverRemoveBin(RecycleBinRemoveReqDTO requestParam) {
+        LambdaQueryWrapper<ShortLinkDO> updateWrapper = Wrappers.lambdaQuery(ShortLinkDO.class)
+                .eq(ShortLinkDO::getFullShortUrl, requestParam.getFullShortUrl())
+                .eq(ShortLinkDO::getGid, requestParam.getGid())
+                .eq(ShortLinkDO::getEnableStatus, 1)
+                .eq(ShortLinkDO::getDelFlag, 0);
+        baseMapper.delete(updateWrapper);
     }
 }
